@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="paused" default="false"/>
+  <arg name="gazebo_gui" default="true"/>
+
+  <!-- startup simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!-- <arg name="world_name" default="$(find ur5_moveit_config)/worlds/simulation.world"/> -->
+    <arg name="paused" value="false"/>                                          
+    <arg name="verbose" value="false"/>                                         
+    <arg name="use_sim_time" value="true"/>                                     
+    <arg name="gui" value="true"/>                                              
+    <arg name="headless" value="false"/>                                        
+    <arg name="debug" value="false"/>                                           
+    <!-- <arg name="extra_gazebo_args" value="-s libgazebo_world_plugin_loader.so"/> -->           
+  </include>
+
+  <!-- send robot urdf to param server -->
+  <param name="robot_description" command="xacro --inorder '$(find ur5_description)/urdf/ur5_robot.urdf.xacro'" />
+
+  <!-- push robot_description to factory and spawn robot in gazebo at the origin, change x,y,z arguments to spawn in a different position -->
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -x 0 -y 0 -z 0"
+    respawn="false" output="screen" />
+
+  <include file="$(find ur5_moveit_config)/launch/ros_controllers.launch"/>
+
+</launch>

@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+<xacro:macro name="kinect_camera" params="prefix parent_link xyz rpy">
+
+<xacro:property name="M_PI" value="3.14159265359"/>
+
+    <joint name="${prefix}_parent_camera_joint" type="fixed">
+        <parent link="${parent_link}"/>
+        <child link="${prefix}_kinect_link"/>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+    </joint>
+    
+    <link name="${prefix}_kinect_link">
+        <visual>
+            <geometry>
+            <box size="0.064 0.121 0.0381" />
+            </geometry>
+            <material name="Blue" />
+        </visual>
+        <inertial>
+            <mass value="0.0001" />
+            <origin xyz="0 0 0" />
+            <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+                    iyy="0.0001" iyz="0.0" 
+                    izz="0.0001" />
+        </inertial>
+    </link>
+
+        <joint name="${prefix}_kinect_depth_joint" type="fixed">
+        <origin xyz="0 0 -0.01905" rpy="0 ${M_PI/2} 0" />
+        <parent link="${prefix}_kinect_link" />
+        <child link="${prefix}_kinect_depth_frame" />
+        </joint>
+
+        <link name="${prefix}_kinect_depth_frame">
+        <inertial>
+            <mass value="0.0001" />
+            <origin xyz="0 0 0" />
+            <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+                    iyy="0.0001" iyz="0.0" 
+                    izz="0.0001" />
+        </inertial>
+        </link>
+
+        <joint name="${prefix}_depth_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+        <parent link="${prefix}_kinect_depth_frame" />
+        <child link="${prefix}_kinect_depth_optical_frame" />
+        </joint>
+
+        <link name="${prefix}_kinect_depth_optical_frame">
+        <inertial>
+            <mass value="0.0001" />
+            <origin xyz="0 0 0" />
+            <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+                    iyy="0.0001" iyz="0.0" 
+                    izz="0.0001" />
+        </inertial>
+    </link>
+    <gazebo reference="${prefix}_kinect_depth_frame">
+        <sensor type="depth" name="camera">
+            <always_on>true</always_on>
+            <visualize>true</visualize>
+            <update_rate>10.0</update_rate>
+            <camera name="kinetic">
+            <horizontal_fov>1.047197</horizontal_fov>
+            <image>
+                <!-- openni_kinect plugin works only with BGR8 -->
+                <format>L8</format>
+                <width>640</width>
+                <height>480</height>
+            </image>
+            <clip>
+                <near>0.1</near>
+                <far>2</far>
+            </clip>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+            <baseline>0.2</baseline>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>10.0</updateRate>
+            <cameraName>${prefix}</cameraName>
+            <imageTopicName>rgb/image_raw</imageTopicName>
+            <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+            <depthImageTopicName>depth_registered/image_raw</depthImageTopicName>
+            <depthImageCameraInfoTopicName>depth_registered/camera_info</depthImageCameraInfoTopicName>
+            <pointCloudTopicName>depth_registered/points</pointCloudTopicName>
+            <frameName>${prefix}_kinect_depth_optical_frame</frameName>
+            <pointCloudCutoff>0.1</pointCloudCutoff>
+            <pointCloudCutoffMax>2</pointCloudCutoffMax>
+            <CxPrime>0</CxPrime>
+            <Cx>0</Cx>
+            <Cy>0</Cy>
+            <focalLength>0</focalLength>
+            <hackBaseline>0</hackBaseline>
+            </plugin>
+        </sensor>
+    </gazebo>
+</xacro:macro>
+</robot>

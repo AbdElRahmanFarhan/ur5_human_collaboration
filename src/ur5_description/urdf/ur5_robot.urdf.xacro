@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur5" >
+
+  <xacro:property name="M_PI" value="3.14159265359"/>
+
+  <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find ur5_description)/urdf/common.gazebo.xacro" />
+
+  <!-- ur5 -->
+  <xacro:include filename="$(find ur5_description)/urdf/ur5.urdf.xacro" />
+
+  <!-- arm -->
+  <xacro:ur5_robot prefix="" joint_limited="false"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+  />
+
+  <link name="world" />
+  <!-- <joint name="world_fence" type="fixed">
+    <parent link="world" />
+    <child link = "fence" />
+    <origin xyz="-1 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint> -->
+  <joint name="fence_pedestal" type="fixed">
+    <parent link="world" />
+    <child link = "pedestal" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+  <joint name="world_table" type="fixed">
+    <parent link="world" />
+    <child link = "table" />
+    <origin xyz="0.7 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <xacro:include filename="$(find ur5_description)/urdf/camera.xacro"/>
+  <!-- x = 0.5 the best value -->
+  <xacro:kinect_camera prefix="camera1" parent_link="world" xyz="0.7 0 2" rpy="0 0.3 0"/>
+
+  <xacro:include filename="$(find ur5_description)/urdf/vacuum_gripper.xacro"/>
+  <xacro:gripper parent_link="wrist_3_link" xyz="0 0.0823 0" rpy="0 0 ${M_PI/2}"/>
+      
+</robot>

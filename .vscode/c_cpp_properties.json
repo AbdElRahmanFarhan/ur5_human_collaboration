@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/opt/ros/melodic/include/**",
+                "/home/abdelrahman/kuka_ur10e_ws/src/kuka_experimental/kuka_eki_hw_interface/include/**",
+                "/home/abdelrahman/kuka_ur10e_ws/src/kuka_experimental/kuka_rsi_hw_interface/include/**",
+                "/home/abdelrahman/catkin_ws/src/moveit_resources/include/**",
+                "/home/abdelrahman/kuka_ur10e_ws/src/play_with_moveit/include/**",
+                "/usr/include/**"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "${default}",
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "configurationProvider": "b2.catkin_tools"
+        }
+    ],
+    "version": 4
+}

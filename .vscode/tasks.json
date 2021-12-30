@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "catkin config --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && catkin build ur5_control -DCMAKE_BUILD_TYPE=Debug",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "catkin",
+            "problemMatcher": [
+                "$catkin-gcc"
+            ],
+            "group": "build",
+            "label": "catkin: make"
+        }
+    ],
+    "problemMatcher": []
+}

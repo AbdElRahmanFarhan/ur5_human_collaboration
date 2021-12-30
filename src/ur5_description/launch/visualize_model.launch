@@ -1,0 +1,10 @@
+<launch>
+	    <!-- We do not have a robot connected, so publish fake joint states -->
+		<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+		  <param name="use_gui" value="True"/>
+		</node>
+
+		<!-- Given the published joint states, publish tf for the robot links -->
+		<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
+		<node pkg="rviz" name="rviz" type="rviz"/>
+</launch>

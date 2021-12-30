@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="ur5_control" type="ur5_motion_planning.py" name="motion_planning">
+    </node>
+    <param name="planner_type" value="RRT"/>
+</launch>
