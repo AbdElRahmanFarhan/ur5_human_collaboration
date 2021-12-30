@@ -13,3 +13,9 @@
 [submodule "src/rqt_joint_trajectory_plot"]
 	path = src/rqt_joint_trajectory_plot
 	url = https://github.com/tork-a/rqt_joint_trajectory_plot.git
+[submodule "src/pal_msgs"]
+	path = src/pal_msgs
+	url = https://github.com/pal-robotics/pal_msgs.git
+[submodule "src/humanoid_msgs"]
+	path = src/humanoid_msgs
+	url = https://github.com/ahornung/humanoid_msgs.git
