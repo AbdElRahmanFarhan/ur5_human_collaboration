@@ -27,15 +27,20 @@
     <child link = "pedestal" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
   </joint>
-  <joint name="world_table" type="fixed">
+  <joint name="world_pick_table" type="fixed">
     <parent link="world" />
-    <child link = "table" />
-    <origin xyz="0.7 0.0 0.0" rpy="0.0 0.0 0.0" />
+    <child link = "pick_table" />
+    <origin xyz="0.1 -0.6 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+  <joint name="world_place_table" type="fixed">
+    <parent link="world" />
+    <child link = "place_table" />
+    <origin xyz="0.01 0.6 0.0" rpy="0.0 0.0 0.0" />
   </joint>
 
   <xacro:include filename="$(find ur5_description)/urdf/camera.xacro"/>
   <!-- x = 0.5 the best value -->
-  <xacro:kinect_camera prefix="camera1" parent_link="world" xyz="0.7 0 2" rpy="0 0.3 0"/>
+  <xacro:kinect_camera prefix="camera1" parent_link="world" xyz="0.7 0 2" rpy="0 -0.3 0"/>
 
   <xacro:include filename="$(find ur5_description)/urdf/vacuum_gripper.xacro"/>
   <xacro:gripper parent_link="wrist_3_link" xyz="0 0.0823 0" rpy="0 0 ${M_PI/2}"/>
