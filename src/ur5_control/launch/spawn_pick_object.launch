@@ -4,6 +4,6 @@
     args="-sdf -database gear_part -model gear_part -x 0.6 -y -0.2 -z 1.1 "/>
 
     <node pkg="gazebo_test_tools" type="fake_object_recognizer_cmd" name="fake_object_recognizer_cmd" output="screen" 
-    args="gear_part 1" /> 
+    args="gear_part 0" respawn="False"/> 
 
 </launch>

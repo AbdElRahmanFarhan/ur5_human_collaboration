@@ -5,7 +5,7 @@
 
   <!-- startup simulated world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <!-- <arg name="world_name" default="$(find ur5_moveit_config)/worlds/simulation.world"/> -->
+     <arg name="world_name" default="$(find ur5_moveit_config)/worlds/simulation.world"/> 
     <arg name="paused" value="false"/>                                          
     <arg name="verbose" value="false"/>                                         
     <arg name="use_sim_time" value="true"/>                                     
