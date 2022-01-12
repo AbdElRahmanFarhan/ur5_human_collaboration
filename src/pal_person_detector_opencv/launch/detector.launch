@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="max_rate"  default="5"/>
+  <arg name="max_rate"  default="15"/>
   <arg name="scale"     default="0.5"/>
-  <arg name="image"     default="/camera/color/image_raw"/>
+  <arg name="image"     default="/camera1/rgb/image_raw"/>
   <arg name="transport" default="raw"/>
 
   <node name="person_detector" pkg="pal_person_detector_opencv" type="pal_person_detector_opencv" output="screen">

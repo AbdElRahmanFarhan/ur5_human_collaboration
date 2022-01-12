@@ -2,5 +2,7 @@
 <launch>
     <include file="$(find ur5_moveit_config)/launch/demo_gazebo.launch" />
     <node pkg="ur5_control" type="trajectory_visualizer" name="trajectory_visualizer"/>
+    <include file="$(find pal_person_detector_opencv)/launch/detector_world_viewer.launch" />
+
 
 </launch>

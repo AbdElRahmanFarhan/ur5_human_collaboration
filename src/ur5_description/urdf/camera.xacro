@@ -61,24 +61,24 @@
         <sensor type="depth" name="camera">
             <always_on>true</always_on>
             <visualize>true</visualize>
-            <update_rate>10.0</update_rate>
+            <update_rate>20.0</update_rate>
             <camera name="kinetic">
             <horizontal_fov>1.047197</horizontal_fov>
             <image>
                 <!-- openni_kinect plugin works only with BGR8 -->
-                <format>L8</format>
+                <format>BGR8</format>
                 <width>640</width>
                 <height>480</height>
             </image>
             <clip>
                 <near>0.1</near>
-                <far>2</far>
+                <far>5</far>
             </clip>
             </camera>
             <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
             <baseline>0.2</baseline>
             <alwaysOn>true</alwaysOn>
-            <updateRate>10.0</updateRate>
+            <updateRate>20.0</updateRate>
             <cameraName>${prefix}</cameraName>
             <imageTopicName>rgb/image_raw</imageTopicName>
             <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
@@ -86,12 +86,12 @@
             <depthImageCameraInfoTopicName>depth_registered/camera_info</depthImageCameraInfoTopicName>
             <pointCloudTopicName>depth_registered/points</pointCloudTopicName>
             <frameName>${prefix}_kinect_depth_optical_frame</frameName>
-            <pointCloudCutoff>0.1</pointCloudCutoff>
-            <pointCloudCutoffMax>2</pointCloudCutoffMax>
+            <pointCloudCutoff>0.5</pointCloudCutoff>
+            <pointCloudCutoffMax>3</pointCloudCutoffMax>
             <CxPrime>0</CxPrime>
             <Cx>0</Cx>
             <Cy>0</Cy>
-            <focalLength>0</focalLength>
+            <focalLength>1</focalLength>
             <hackBaseline>0</hackBaseline>
             </plugin>
         </sensor>

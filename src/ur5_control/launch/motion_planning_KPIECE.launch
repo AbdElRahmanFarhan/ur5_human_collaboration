@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <launch>
+<include file="$(find ur5_control)/launch/spawn_pick_object.launch" />
     <node pkg="ur5_control" type="ur5_motion_planning.py" name="motion_planning">
     </node>
     <param name="planner_type" value="KPIECE"/>

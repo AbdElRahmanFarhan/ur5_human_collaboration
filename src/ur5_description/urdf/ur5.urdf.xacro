@@ -15,7 +15,7 @@
   </xacro:macro>
 
   <xacro:macro name="ur5_robot" params="prefix joint_limited
-    shoulder_pan_lower_limit:=${-pi}    shoulder_pan_upper_limit:=${pi}
+    shoulder_pan_lower_limit:=${-1}    shoulder_pan_upper_limit:=${pi+1}
     shoulder_lift_lower_limit:=${-pi}    shoulder_lift_upper_limit:=${pi}
     elbow_joint_lower_limit:=${-pi}    elbow_joint_upper_limit:=${pi}
     wrist_1_lower_limit:=${-pi}    wrist_1_upper_limit:=${pi}
@@ -177,7 +177,7 @@
     <joint name="pedestal_base" type="fixed">
       <parent link="pedestal"/>
       <child link="base_link"/>
-      <origin xyz="-0.124 0 0.95" rpy="0 0 0"/>
+      <origin xyz="-0.124 0 0.95" rpy="0 0 ${-radians(90)}"/>
     </joint>
     
     <link name="${prefix}base_link" >

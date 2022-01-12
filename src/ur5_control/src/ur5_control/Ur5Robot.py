@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import rospy
 import numpy as np
@@ -78,7 +78,7 @@ class Ur5Robot:
             plan, fraction = self.__group_commander.compute_cartesian_path(way_points_list, 0.005, 0.0, avoid_collisions)
 
             # post processing for the trajectory to ensure its validity 
-            last_time_step = plan.joint_trajectory.points[0].time_from_start.to_sec
+            last_time_step = plan.joint_trajectory.points[0].time_from_start.to_sec()
             new_plan = RobotTrajectory()
             new_plan.joint_trajectory.header = plan.joint_trajectory.header
             new_plan.joint_trajectory.joint_names = plan.joint_trajectory.joint_names
@@ -86,9 +86,9 @@ class Ur5Robot:
 
             for i in range(1, len(plan.joint_trajectory.points)):
                 point = plan.joint_trajectory.points[i]
-                if point.time_from_start.to_sec > last_time_step:
+                if point.time_from_start.to_sec() > last_time_step:
                     new_plan.joint_trajectory.points.append(point)
-                last_time_step = point.time_from_start.to_sec
+                last_time_step = point.time_from_start.to_sec()
 
             # execute the trajectory
             success = self.__group_commander.execute(new_plan)
@@ -159,15 +159,15 @@ class Ur5Robot:
      With an appropriate orientation.
     So what is left in order to pick. is to approach the object. turn  gripper on and then retreat.
     """
-    def pick_object(self, object_name, approach_dist, retreat_dist):
+    def pick_object(self, approach_dist, retreat_dist):
 
         # approach the object
         self.move_tool_in_straight_line(approach_dist, avoid_collisions=True)
-        rospy.sleep(1)
+        rospy.sleep(2)
 
         # turn on the vacuum gripper to pick the object
         self.vacuum_gripper_on()
-        rospy.sleep(1)
+        rospy.sleep(2)
 
         # retreat 
         self.move_tool_in_straight_line(retreat_dist, avoid_collisions=True)
@@ -175,15 +175,15 @@ class Ur5Robot:
     """
     Place an object using the vacuum gripper
     """
-    def place_object(self, object_name, approach_dist, retreat_dist):
+    def place_object(self, approach_dist, retreat_dist):
 
         # approach the table
         self.move_tool_in_straight_line(approach_dist, avoid_collisions=True)
-        rospy.sleep(1)
+        rospy.sleep(2)
         
         # turn off the vacuum gripper to place the object
         self.vacuum_gripper_off() 
-        rospy.sleep(1)
+        rospy.sleep(2)
 
         # retreat 
         self.move_tool_in_straight_line(retreat_dist, avoid_collisions=True)

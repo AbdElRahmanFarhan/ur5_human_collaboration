@@ -1,11 +1,7 @@
 {
     "python.autoComplete.extraPaths": [
-        "/home/abdelrahman/ur5_human_collaboration/devel/lib/python2.7/dist-packages",
-        "/home/abdelrahman/kuka_ur10e_ws/devel/lib/python2.7/dist-packages",
-        "/home/abdelrahman/catkin_ws/devel/lib/python2.7/dist-packages",
-        "/opt/ros/kinetic/lib/python2.7/dist-packages",
-        "/home/abdelrahman/ur5_human_collaboration/src/ur5_control/scripts",
-        "/home/abdelrahman/ur5_human_collaboration/src/ur5_control/src"
+        "/home/abdelrahman/ur5_human_collaboration/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages",
     ],
     "C_Cpp.default.configurationProvider": "b2.catkin_tools",
     "clang.completion.enable": false,
@@ -16,6 +12,9 @@
         "install*/": true,
         "devel*/": true,
         "log*/": true,
-        ".gitignore":true
-    }
+        ".gitignore":false
+    },
+    "python.analysis.extraPaths": [
+        "./src/ur5_control/src"
+    ]
 }

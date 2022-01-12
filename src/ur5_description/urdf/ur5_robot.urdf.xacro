@@ -12,7 +12,7 @@
   <xacro:include filename="$(find ur5_description)/urdf/ur5.urdf.xacro" />
 
   <!-- arm -->
-  <xacro:ur5_robot prefix="" joint_limited="false"
+  <xacro:ur5_robot prefix="" joint_limited="true"
     transmission_hw_interface="$(arg transmission_hw_interface)"
   />
 
@@ -40,7 +40,7 @@
 
   <xacro:include filename="$(find ur5_description)/urdf/camera.xacro"/>
   <!-- x = 0.5 the best value -->
-  <xacro:kinect_camera prefix="camera1" parent_link="world" xyz="0.7 0 2" rpy="0 -0.3 0"/>
+  <xacro:kinect_camera prefix="camera1" parent_link="world" xyz="0.8 2.5 0.8" rpy="0 ${-M_PI/2} ${-M_PI/2}"/>
 
   <xacro:include filename="$(find ur5_description)/urdf/vacuum_gripper.xacro"/>
   <xacro:gripper parent_link="wrist_3_link" xyz="0 0.0823 0" rpy="0 0 ${M_PI/2}"/>
